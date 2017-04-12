@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -47,13 +46,13 @@ public class OpenWeatherRetrieverZ {
 		String weatherRequestByGeoLocationUrl = String.format(weatherRequestByGeoLocationFormattedUrl, geoLat, geoLong, apiKey);
         new ProcessWeatherAsyncTask(weatherRequestByGeoLocationUrl, callback).execute();
 	}
-	public void updateDailyForecastInfo(String cityId, TimeZone timeZone, DailyForecastCallback callback){
+	public void updateDailyForecastInfo(String cityId, DailyForecastCallback callback){
 		String dailyForecastRequestByCityIdUrl = String.format(dailyForecastByCityIdFormattedUrl, cityId, apiKey);
-		new ProcessForecastAsyncTask(dailyForecastRequestByCityIdUrl, timeZone, callback).execute();
+		new ProcessForecastAsyncTask(dailyForecastRequestByCityIdUrl, callback).execute();
 	}
-	public void updateDailyForecastInfo(double geoLat, double geoLong, TimeZone timeZone, DailyForecastCallback callback){
+	public void updateDailyForecastInfo(double geoLat, double geoLong, DailyForecastCallback callback){
 		String dailyForecastByGeoLocationUrl = String.format(dailyForecastByGeoLocationFormattedUrl, geoLat, geoLong, apiKey);
-        new ProcessForecastAsyncTask(dailyForecastByGeoLocationUrl, timeZone, callback).execute();
+        new ProcessForecastAsyncTask(dailyForecastByGeoLocationUrl, callback).execute();
 	}
 	
 	// Private functions
@@ -136,9 +135,7 @@ public class OpenWeatherRetrieverZ {
 					if (currentDay == -1){
 						//currentDay = date.getDay();
                         currentDay = cal.get(Calendar.DAY_OF_WEEK);
-                        dateCalendar.set(Calendar.YEAR, cal.get(Calendar.YEAR));
-                        dateCalendar.set(Calendar.MONTH, cal.get(Calendar.MONTH));
-                        dateCalendar.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH));
+						dateCalendar.setTimeInMillis(cal.getTimeInMillis());
 					}
                     if (cal.before(Calendar.getInstance())){
                         // If the weather data is from before current time, skip
@@ -208,6 +205,9 @@ public class OpenWeatherRetrieverZ {
 				daily.setSnowVolumeProjected(String.format(Locale.getDefault(), "%.1f", sumSnowVolume));
 				daily.setDataCount(sameDayDataCount);
                 daily.setDateCalendar(dateCalendar);
+                if (dateCalendar == null){
+                    Log.e("Weird", "date calendar is null");
+                }
 				int maxCount = 0;
 				List<String> weatherDescriptionList = new ArrayList<String>();
                 List<String> weatherIconLinkList = new ArrayList<String>();
@@ -279,13 +279,11 @@ public class OpenWeatherRetrieverZ {
 
     private class ProcessForecastAsyncTask extends AsyncTask<Object, Void, Void> {
         private String url;
-        private TimeZone timeZone;
         private DailyForecastCallback callback;
         private List<DailyForecastInfo> dailyForecastInfoList;
 
-        private ProcessForecastAsyncTask(String url, TimeZone timeZone, DailyForecastCallback callback){
+        private ProcessForecastAsyncTask(String url, DailyForecastCallback callback){
             this.url = url;
-            this.timeZone = timeZone;
             this.callback = callback;
         }
         @Override
