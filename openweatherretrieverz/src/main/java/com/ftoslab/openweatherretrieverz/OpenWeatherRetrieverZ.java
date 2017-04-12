@@ -185,7 +185,6 @@ public class OpenWeatherRetrieverZ {
 							sumSnowVolume += Double.parseDouble(String.valueOf(jSnow.get("3h")));
 						}
 					}
-                    Log.d("CHECK CHECK CHECK", "Date: " + cal.get(Calendar.DAY_OF_WEEK) + "; hour: " + cal.get(Calendar.HOUR_OF_DAY));
 				}
                 while(cal.get(Calendar.DAY_OF_WEEK) == currentDay);
 
@@ -205,9 +204,6 @@ public class OpenWeatherRetrieverZ {
 				daily.setSnowVolumeProjected(String.format(Locale.getDefault(), "%.1f", sumSnowVolume));
 				daily.setDataCount(sameDayDataCount);
                 daily.setDateCalendar(dateCalendar);
-                if (dateCalendar == null){
-                    Log.e("Weird", "date calendar is null");
-                }
 				int maxCount = 0;
 				List<String> weatherDescriptionList = new ArrayList<String>();
                 List<String> weatherIconLinkList = new ArrayList<String>();
@@ -227,7 +223,6 @@ public class OpenWeatherRetrieverZ {
 				daily.setWeatherDescriptionList(weatherDescriptionList);
                 daily.setWeatherIconIdLinkList(weatherIconLinkList);
 				dailyForecastInfoList.add(daily);
-                Log.d("Divider", "---------------------------------------------------");
             }
 			return dailyForecastInfoList;
 	}
