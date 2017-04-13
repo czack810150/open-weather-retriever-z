@@ -28,7 +28,7 @@ public class DailyForecastInfo {
     protected DailyForecastInfo(DailyForecastInfo another){
         this.weatherUnit = another.getWeatherUnit();
         this.cityId = another.getCityId();
-        this.cityId = another.getCityName();
+        this.cityName = another.getCityName();
         this.geoLongitude = another.getGeoLongitude();
         this.geoLatitude = another.getGeoLatitude();
         this.dailyAverageTemperature = another.getDailyAverageTemperature();
@@ -41,6 +41,7 @@ public class DailyForecastInfo {
         this.averageWindSpeed = another.getAverageWindSpeed();
         this.rainVolumeProjected = another.getRainVolumeProjected();
         this.snowVolumeProjected = another.getSnowVolumeProjected();
+		this.dateCalendar = another.getDateCalendar();
     }
 	//GETTERS
 	public String getWeatherUnit() {

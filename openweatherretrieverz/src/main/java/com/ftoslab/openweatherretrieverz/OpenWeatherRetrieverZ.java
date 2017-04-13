@@ -1,7 +1,6 @@
 package com.ftoslab.openweatherretrieverz;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -108,7 +107,6 @@ public class OpenWeatherRetrieverZ {
 			Iterator<JSONObject> iterator = jForecastArry.iterator();
 			int i = 0;
 			while (iterator.hasNext()){
-                // TODO add a logic to filter out forecast that's in the past!!
 				i += 1;
 				int sameDayDataCount = 0;
 				double sumTemp = 0;
