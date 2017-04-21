@@ -1,9 +1,9 @@
 # open-weather-retriever-z
-## Introduction
+
 This is a wrapper that makes getting weather information from OpenWeatherMap a whole lot easier. What seperates this from other wrappers is that, in addition to the basic weather information, it allows free openweathermap user to get up to 5 days of daily forecast information, which typically requires a developer account with OpenWeatherMap(180USD/month). Please note that this is not a hack, instead the library calculates the 3-hour forecast information that free users get, summarize those values, and return it as daily forecast.
 ## Getting Started
 ### Dependency
-Step 1: Add jCenter to your repository in project's build.gradle file: 
+Step 1: Add jcenter to your repository in project's build.gradle file: 
 ``` 
 repositories {
     ...
@@ -20,7 +20,7 @@ dependencies {
     compile 'com.ftoslab:openweatherretrieverz:0.1.4'
 }
 ```
-### Information Available
+### Available Information
 Current Weather Information:
 - current temperature
 - current maximum temperature
@@ -80,6 +80,9 @@ retriever.updateDailyForecastInfo("6167865", new DailyForecastCallback() {
 });
 ```
 Both updateCurrentWeatherInfo and updateDailyForecastInfo are async, which means the main thread won't hang there and wait for the operation to finish. Instead, callback functions will be called when the information became available or when something went wrong.
+
+## Example
+You can find an example app [here](https://github.com/czack810150/open-weather-retriever-z-example) 
 
 ## Contribution
 The project is still in its preliminary phase, any contribution is welcomed and appreciated. I will review all the pull requests.
