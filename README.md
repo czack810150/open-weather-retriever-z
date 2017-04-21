@@ -20,7 +20,7 @@ dependencies {
     compile 'com.ftoslab:openweatherretrieverz:0.1.4'
 }
 ```
-### Functions Available
+### Information Available
 Current Weather Information:
 - current temperature
 - current maximum temperature
@@ -48,4 +48,35 @@ Tools:
 - convert all units to Metric
 - convert all units to Imperial
 - temperature converter
+
+### Initialize
+``` JAVA
+ // Initialize OpenWeatherRetrieverZ by passing in  your openweathermap api key
+OpenWeatherRetrieverZ retriever = new OpenWeatherRetrieverZ(API_KEY);
+/*
+You can retrieve weather information with either OpenWeatherMap cityID or geolocation(Latitude, Logitude)
+*/
+retriever.updateCurrentWeatherInfo("6167865", new WeatherCallback() {
+  @Override
+  public void onReceiveWeatherInfo(CurrentWeatherInfo currentWeatherInfo) {
+  	// Your code here
+  }
+  @Override
+  public void onFailure(String error) {
+    // Your code here
+  }
+});
+retriever.updateDailyForecastInfo("6167865", new DailyForecastCallback() {
+  @Override
+  public void onReceiveDailyForecastInfoList(List<DailyForecastInfo> dailyForecastInfoList) {
+  	// Your code here
+  }
+  @Override
+  public void onFailure(String error) {
+  	// Your code here
+  }
+});
+```
+
+
 
