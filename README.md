@@ -4,22 +4,16 @@ This is a wrapper that makes getting weather information from OpenWeatherMap a w
 ## How to use this library
 Step 1: Add jCenter to your repository in project's build.gradle file: 
 > repositories {
-
->     jcenter()
-
-> }
+    jcenter()
+ }
 
 Step 2: In module's build.gradle add the following dependency:
 
 >dependencies {
-
->    ...
-
->    ...
-
->    compile 'com.ftoslab:openweatherretrieverz:0.1.4'
-
->}
+    ...
+    ...
+    compile 'com.ftoslab:openweatherretrieverz:0.1.4'
+}
 
 
 
