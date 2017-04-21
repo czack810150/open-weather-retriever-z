@@ -20,7 +20,7 @@ dependencies {
     compile 'com.ftoslab:openweatherretrieverz:0.1.4'
 }
 ```
-### Functions available
+### Functions Available
 Current Weather Information:
 - current temperature
 - current maximum temperature
@@ -32,6 +32,7 @@ Current Weather Information:
 - windspeed
 - 3-hour rain volume
 - 3-hour snow volume
+
 5 Day Forecast:
 - daily average temperature
 - daily high temperature
