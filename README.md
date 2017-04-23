@@ -86,6 +86,7 @@ You can find an example app [here](https://github.com/czack810150/open-weather-r
 
 ## Contribution
 The project is still in its preliminary phase, any contribution is welcomed and appreciated. I will review all the pull requests.
+If you find any bug or just wanna throw in a thought, feel free to create an issue!
 
 ## License
 ```
