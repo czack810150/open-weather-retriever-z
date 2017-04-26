@@ -44,6 +44,7 @@ Current Weather Information:
 - average wind speed
 - rain volume projected
 - snow volume projected
+
 Tools:
 - convert all units to Metric
 - convert all units to Imperial
@@ -82,7 +83,10 @@ retriever.updateDailyForecastInfo("6167865", new DailyForecastCallback() {
 Both updateCurrentWeatherInfo and updateDailyForecastInfo are async, which means the main thread won't hang there and wait for the operation to finish. Instead, callback functions will be called when the information became available or when something went wrong.
 
 ## Example
-You can find an example app [here](https://github.com/czack810150/open-weather-retriever-z-example) 
+You can find an example app [here](https://github.com/czack810150/open-weather-retriever-z-example)
+
+## Notes
+The ArrayList you get from updateDailyForecastInfo starts from the same day you request it (index 0, day 1), and you will be able to get forecast up until day 6 around the same time, which means the forecast on day 6 might not cover the whole day. This is because as a free user, you only get 40 pieces of 3-hour forecast information (5 days starting from the time you request it). To check how many pieces of 3-hour data for a particular day, you can make use of the function getDataCount() on DailyForecastInfo. 
 
 ## Contribution
 The project is still in its preliminary phase, any contribution is welcomed and appreciated. I will review all the pull requests.
